@@ -16,4 +16,6 @@
 """
 
 mac = "AAAA:BBBB:CCCC"
-print(bin(int(mac.replace(':',''),16)).replace('0b',''))
+
+bin_mac = "{:b}".format(int(mac.replace(":", ""), 16))
+print(bin_mac)
