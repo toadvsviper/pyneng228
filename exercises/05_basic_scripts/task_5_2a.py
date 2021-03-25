@@ -42,14 +42,23 @@ bin_ip = "00001010000000010000000111000011"
 
 """
 ip_mask = input('Введите IP-адрес и маску подсети: ')
+
 ip = ip_mask[:ip_mask.index('/')].split('.')
+o1,o2,o3,o4 = ip
+o1,o2,o3,o4 = int(o1),int(o2),int(o3),int(o4)
+ip_bin = f"{o1:08b}"+f"{o2:08b}"+f"{o3:08b}"+f"{o4:08b}"
 mask = ip_mask[ip_mask.index('/')+1:]
 binmask = '1'*int(mask)+'0'*(32-int(mask))
+
+net_bin = ip_bin[0:int(mask)]+'0'*(32-int(mask))
+net = [int(net_bin[0:8],2),int(net_bin[8:16],2),int(net_bin[16:24],2),int(net_bin[24:32],2)]
+#print(net_bin)
+#print(net)
 print(f'''
 
 Network:
-{ip[0]:<8} {ip[1]:<8} {ip[2]:<8} {ip[3]:<8}
-{int(ip[0]):08b} {int(ip[1]):08b} {int(ip[2]):08b} {int(ip[3]):08b}
+{net[0]:<8} {net[1]:<8} {net[2]:<8} {net[3]:<8}
+{net_bin[0:8]} {net_bin[8:16]} {net_bin[16:24]} {net_bin[24:32]:}
 
 Mask:
 /{mask}
