@@ -52,6 +52,7 @@ binmask = '1'*int(mask)+'0'*(32-int(mask))
 
 net_bin = ip_bin[0:int(mask)]+'0'*(32-int(mask))
 net = [int(net_bin[0:8],2),int(net_bin[8:16],2),int(net_bin[16:24],2),int(net_bin[24:32],2)]
+gateway = [int(net_bin[0:8],2),int(net_bin[8:16],2),int(net_bin[16:24],2),int(net_bin[24:32],2)+1]
 #print(net_bin)
 #print(net)
 print(f'''
@@ -59,6 +60,9 @@ print(f'''
 Network:
 {net[0]:<8} {net[1]:<8} {net[2]:<8} {net[3]:<8}
 {net_bin[0:8]} {net_bin[8:16]} {net_bin[16:24]} {net_bin[24:32]:}
+
+Gateway:
+{gateway[0]:<8} {gateway[1]:<8} {gateway[2]:<8} {gateway[3]:<8}
 
 Mask:
 /{mask}
